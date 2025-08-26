@@ -1,0 +1,48 @@
+# Exercício 1.2 - Bilheteria de Evento
+
+evento = ""
+ingressos = 0
+
+while True:
+    print("\n--- Bilheteria ---")
+    print("1. Cadastrar nome do evento")
+    print("2. Vender ingressos na Entrada")
+    print("3. Repor ingressos vendidos")
+    print("4. Ver ingressos disponíveis para sessão")
+    print("5. Sair do Programa")
+
+    opcao = input("Escolha uma das opções acima: ")
+
+    if opcao == "1":
+        evento = input("Digite o nome do evento: ")
+        print(f"Evento '{evento}' cadastrado com sucesso!")
+
+    elif opcao == "2":
+        if evento == "":
+            print("Nenhum evento cadastrado!")
+        else:
+            qtd = int(input("Quantos ingressos deseja vender? "))
+            if qtd <= ingressos:
+                ingressos -= qtd
+                print(f"{qtd} ingressos vendidos para '{evento}'.")
+            else:
+                print("Não há ingressos suficientes para vender.")
+
+    elif opcao == "3":
+        qtd = int(input("Quantos ingressos deseja repor? "))
+        if qtd > 0:
+            ingressos += qtd
+            print(f"{qtd} ingressos adicionados.")
+        else:
+            print("Quantidade inválida. Deve ser maior que 0.")
+
+    elif opcao == "4":
+        print(f"Evento: {evento if evento else 'Nenhum evento cadastrado'}")
+        print(f"Ingressos disponíveis: {ingressos}")
+
+    elif opcao == "5":
+        print("Encerrando programa com sucesso!")
+        break
+
+    else:
+        print("Opção inválida!")
