@@ -56,7 +56,27 @@ def criar_publicacao(usuario_logado):
     )
     lista_publicacoes.append(nova_publicacao)
     print("Publicação postada!")
-        
+
+def curtir_publicacao():
+    print("\n=== Curtir Publicação ===")
+    if not lista_publicacoes:
+        print("Nenhuma publicação para curtir.")
+        return
+    
+    # Mostra todas as publicações com índice
+    for i, pub in enumerate(lista_publicacoes):
+        print(f"{i+1} - {pub.descricao} (Autor: {pub.autor}, Curtidas: {pub.curtidas})")
+
+    try:
+        escolha = int(input("Digite o número da publicação que deseja curtir: "))
+        if 1 <= escolha <= len(lista_publicacoes):
+            lista_publicacoes[escolha-1].curtidas += 1
+            print("Você curtiu a publicação!")
+        else:
+            print("Opção inválida.")
+    except ValueError:
+        print("Digite um número válido.")
+
 def mostrar_menu():
     print("\n === Bem-Vindo! O que deseja fazer? ===")
     print("1 - Cadastro")
@@ -64,6 +84,7 @@ def mostrar_menu():
     print("3 - Buscar usuário com email")
     print("4 - Fazer publicação")
     print("5 - Ver publicações")
+    print("6 - Curtir publicação")
     print("0 - Sair")
     return input("Digite a opção: ")
     
@@ -99,8 +120,11 @@ while True:
             print(f"Data/Hora: {pub.data_hora.strftime('%d/%m/%Y %H:%M:%S')}")
             print(f"Curtidas: {pub.curtidas}")
 
+    elif opcao == "6":
+        curtir_publicacao()
+
     elif opcao == "0":
-        print("Encerrando o programa.")
+        print("Saindo com Sucesso.")
         break
 
     else:
